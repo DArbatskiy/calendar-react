@@ -1,0 +1,128 @@
+
+
+/*цвет кнопки #0271c7*/
+/*цвет поля #e5f1f9*/
+/*цвет рамки поля #88c3f1*/
+/*header #f4f4f4*/
+/*shadow header #d9d9d9*/
+/*text focus #6e6e6e*/
+/*text #b1b1b1*/
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.wrapper_header {
+    background-color: #f4f4f4;
+    box-shadow: 0px 5px 3px 0px rgba(34, 60, 80, 0.2);
+}
+
+.wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start;
+    width: 800px;
+    margin: 0 auto;
+    height: 40px;
+    padding-top: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.button {
+    margin-right: 10px;
+    background-color: #0271c7;
+    color: white;
+    border: none;
+    width: 90px;
+    height: 25px;
+    border-radius: 2px;
+}
+
+.header__input-container {
+    margin-left: auto;
+    position: relative;
+}
+
+.header__input-container::before {
+    content: "";
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: -20px;
+    top: 4px;
+    width: 17px;
+    height: 17px;
+}
+
+.header__input {
+    height: 21px;
+    width: 200px;
+    border: 2px solid #d9d9d9;
+    border-radius: 2px;
+}
+
+.date {
+    margin-top: 20px;
+}
+
+.date__back-button,
+.date__next-button,
+.date__today-button{
+    padding: 5px 7px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 0px 4px 2px rgba(34, 60, 80, 0.2) inset;
+    margin-right: 5px;
+}
+
+.date__button__image {
+    width: 10px;
+    height: 10px;
+}
+
+.calendar {
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.calendar__item {
+    border: 1px solid #d9d9d9;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    padding: 10px;
+    min-height: 95px;
+    max-width: 130px;
+    font-size: 12px;
+    color: #808080;
+}
+
+.event__item {
+    background-color: #e5f1f9;
+}
+
+.event__title {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.event__text {
+    font-size: 12px;
+    margin: 0;
+}
+
+.today {
+    background-color: #f4f4f4;
+}
+
+.selected {
+    background-color: #e5f1f9;
+}
