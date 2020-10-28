@@ -34,8 +34,6 @@ export default function Calendar() {
     setSelectedDate( date )
     setVisibleForm(true)
     setChosenDate(`${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`)
-    let chosen = document.getElementById(`${chosenDate}`)
-    console.log (chosen)
   }
 
   const handleCloseClick = () => {
@@ -105,8 +103,8 @@ export default function Calendar() {
                 onClick={() => handleDayClick(date)}
                 id={`${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`}
               >{date.getDate()}
-                <h2>{inputEvent}</h2>
-                <span>{inputName}</span>
+                <h2></h2>
+                <span></span>
               </div>
               :
               <div className="calendar__item"> </div>
