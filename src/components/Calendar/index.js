@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import classnames from 'classnames'
 import * as calendar from './calendar'
 import './index.css'
+import EventForm from "./EventForm"
 
 export default function Calendar() {
   const defaultProps = {
@@ -13,6 +14,13 @@ export default function Calendar() {
   const [date, setDate] = useState(defaultProps.date)
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(null)
+  const [chosenDate, setChosenDate] = useState(null)
+  const [visibleForm, setVisibleForm] = useState(false)
+  const [visibleEvent, setVisibleEvent] = useState(false)
+  const [inputEvent, setInputEvent] = useState('')
+  const [inputDate, setInputDate] = useState('')
+  const [inputName, setInputName] = useState('')
+  const [textarea, setTextArea] = useState('')
 
   const handlePrevMonthButtonClick = () => {
     setDate(new Date(date.getFullYear(), date.getMonth() - 1))
@@ -24,6 +32,41 @@ export default function Calendar() {
 
   const handleDayClick = date => {
     setSelectedDate( date )
+    setVisibleForm(true)
+    setChosenDate(`${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`)
+    let chosen = document.getElementById(`${chosenDate}`)
+    console.log (chosen)
+  }
+
+  const handleCloseClick = () => {
+    setVisibleForm(false)
+  }
+
+  const handleInputEventChange = (event) => {
+    setInputEvent(event.target.value)
+  }
+
+  const handleInputDateChange = (event) => {
+    setInputDate(event.target.value)
+  }
+
+  const handleInputNameChange = (event) => {
+    setInputName(event.target.value)
+  }
+
+  const handleTextareaChange = (event) => {
+    setTextArea(event.target.value)
+  }
+
+  const handleDeleteButtonClick = () => {
+    setInputEvent('')
+    setInputDate('')
+    setInputName('')
+    setTextArea('')
+  }
+
+  const handleDoneButtonClick = () => {
+    setVisibleEvent(true)
   }
 
   const monthData = calendar.getMonthData(date.getFullYear(), date.getMonth())
@@ -60,10 +103,24 @@ export default function Calendar() {
                 })}
                 key={index}
                 onClick={() => handleDayClick(date)}
-              >{date.getDate()}</div>
+                id={`${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`}
+              >{date.getDate()}
+                <h2>{inputEvent}</h2>
+                <span>{inputName}</span>
+              </div>
               :
               <div className="calendar__item"> </div>
             )}
+            {visibleForm && <EventForm
+              onCloseClick = {handleCloseClick}
+              onInputEventChange = {handleInputEventChange} inputEvent={inputEvent}
+              onInputDateChange = {handleInputDateChange} inputDate={inputDate}
+              onInputNameChange = {handleInputNameChange} inputName={inputName}
+              onTextareaChange = {handleTextareaChange} textarea={textarea}
+              onDeleteButtonClick = {handleDeleteButtonClick}
+              onDoneButtonClick = {handleDoneButtonClick}
+              chosenDate={chosenDate}
+            />}
           </>
         )}
       </div>
